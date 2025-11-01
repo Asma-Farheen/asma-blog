@@ -4,7 +4,7 @@ import { getMDXComponents } from '@/mdx-components';
 import { DocsBody, DocsDescription, DocsPage, DocsTitle } from 'fumadocs-ui/page';
 import { source } from '@/lib/source';
 
-// Define the correct type for the dynamic route parameters
+// Define the exact type for the dynamic route parameters
 type DocsPageParams = {
   // [[...slug]] can be an array of strings or undefined (for the root /docs page)
   slug?: string[]; 
@@ -12,11 +12,12 @@ type DocsPageParams = {
 
 /**
  * Main Page Component for the Catch-all Route: /docs/[[...slug]]
- * The props are defined using a simple object type, which is the standard
- * way to handle dynamic parameters in the Next.js App Router.
+ *
+ * CRITICAL FIX: The props are destructured using a simple object type,
+ * which eliminates the 'AppRoutes' constraint error caused by PageProps<...>.
  */
 export default async function Page({ params }: { params: DocsPageParams }) {
-  // Destructure params from props directly in the function signature for clarity.
+  // Destructure params from props directly in the function signature.
   const { slug } = params;
   
   const page = source.getPage(slug);
