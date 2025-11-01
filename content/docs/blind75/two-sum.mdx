@@ -1,0 +1,110 @@
+---
+title: "Two Sum"
+slug: "two-sum-blind-75"
+description: "Solve the Two Sum problem using Hash Map approach with step-by-step explanation and clean code."
+date: "2025-10-30"
+tags: ["Blind 75", "Arrays", "Hash Map", "LeetCode"]
+---
+
+# 🧮 Two Sum — Blind 75
+
+The **Two Sum** problem is one of the most popular algorithm questions.  
+We are given an array of integers and a target number. We need to find two numbers that add up to the target and return their indices.
+
+---
+
+## 🧠 Problem Statement
+
+Given an array of integers `nums` and an integer `target`,  
+return *indices of the two numbers such that they add up to `target`*.
+
+You may assume that each input would have exactly one solution,  
+and you may not use the same element twice.
+
+
+### Example
+
+```text
+Input: nums = [2, 7, 11, 15], target = 9  
+Output: [0, 1]
+````
+
+Explanation:
+Because `nums[0] + nums[1] = 2 + 7 = 9`
+
+---
+
+## ⚙️ Approach — Hash Map
+
+We can solve this efficiently using a **Hash Map**.
+
+1. Loop through the array.
+2. For each number, check if the complement (`target - num`) exists in the map.
+3. If it exists, return both indices.
+4. If not, store the number and its index in the map.
+
+This gives us **O(n)** time complexity and **O(n)** space.
+
+---
+
+## 💻 Code (JavaScript)
+
+```javascript
+function twoSum(nums, target) {
+  const map = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    const complement = target - nums[i];
+
+    if (map.has(complement)) {
+      return [map.get(complement), i];
+    }
+
+    map.set(nums[i], i);
+  }
+}
+```
+
+---
+
+
+## 🧾 Example Walkthrough
+
+For `nums = [2, 7, 11, 15]`, `target = 9`
+
+| Step | i | nums[i] | complement | map before | Result |
+| ---- | - | ------- | ---------- | ----------- | ------- |
+| 1 | 0 | 2 | 7 | \{\} | store (2 → 0) |
+| 2 | 1 | 7 | 2 | \{2 → 0\} | found complement → return [0,1] |
+
+---
+
+
+## 🧩 Output
+
+```text
+[0, 1]
+```
+
+---
+
+## ⏱️ Complexity
+
+* **Time Complexity:** O(n)
+* **Space Complexity:** O(n)
+
+---
+
+## ✅ Summary
+
+* Use a Hash Map to track seen numbers.
+* Check for complement before inserting.
+* Efficient and clean — perfect for interviews.
+
+---
+
+## 🔗 Related Problems
+
+* [3Sum](../3sum-blind-75)
+* [4Sum](../4sum-blind-75)
+* [Two Sum II](../two-sum-ii-blind-75)
